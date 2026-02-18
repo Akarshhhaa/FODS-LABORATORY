@@ -1,0 +1,27 @@
+import math
+
+# Sample inputs
+sample_mean = 105
+population_mean = 100
+population_std = 15
+sample_size = 36
+alpha = 0.05
+
+# Calculate Z-score
+z = (sample_mean - population_mean) / (population_std / math.sqrt(sample_size))
+
+# Function to calculate CDF of standard normal distribution
+def normal_cdf(x):
+    return (1 + math.erf(x / math.sqrt(2))) / 2
+
+# Two-tailed p-value
+p_value = 2 * (1 - normal_cdf(abs(z)))
+
+# Display results
+print("Z-score:", round(z, 4))
+print("P-value:", round(p_value, 4))
+
+if p_value < alpha:
+    print("Reject the null hypothesis.")
+else:
+    print("Fail to reject the null hypothesis.")
